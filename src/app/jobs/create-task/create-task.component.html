@@ -1,0 +1,175 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-body" style="padding: 25px">
+          <!-- Add Bootstrap HTML components here -->
+
+          <h2>Task details</h2>
+          <form
+            [formGroup]="activityForm"
+            (submit)="onallocatejob()"
+            class="row g-3"
+            action="/action_page.php"
+          >
+          <div class="col-md-6">
+            <label for="roadname" class="form-label">Road Name:</label>
+            <input
+              formControlName="roadName"
+              type="text"
+              class="form-control"
+              id="roadName"
+              placeholder="Enter the Road Name"
+            />
+          </div>
+            <div class="col-md-6">
+              <label for="activity" class="form-label">Activity:</label>
+              <select
+                formControlName="activityId"
+                id="activityID"
+                class="form-control"
+              >
+                <option
+                  *ngFor="let activity of activities"
+                  value="{{ activity.id }}"
+                >
+                  {{ activity.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="vehiclereg" class="form-label"
+                >Machine Registration Number:</label
+              >
+              <select
+                formControlName="vehicleId"
+                id="vehicleID"
+                class="form-control"
+              >
+                <option value="1">27cgu</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+                <label for="fuel" class="form-label">Nature of Task:</label>
+                <select formControlName="taskNatureId" class="form-control">
+                  <option value="1">Inhouse</option>
+                  <option value="2">Hire</option>
+                </select>
+              </div>
+
+            <div class="col-md-6">
+              <label for="fuel" class="form-label">Task Status:</label>
+              <select formControlName="taskStatusId" class="form-control">
+                <option *ngFor="let status of taskStatus" value="{{status.id}}">{{status.name}}</option>
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="fuel" class="form-label">Description:</label>
+
+              <textarea
+                formControlName="description"
+                class="form-control"
+                id="description"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <label for="fuel" class="form-label">Amount of Fuel:</label>
+
+              <input
+                type="text"
+                formControlName="fuel"
+                id="fuel"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="distance" class="form-label">Distance</label>
+
+              <input
+                type="text"
+                id="distance"
+                formControlName="distance"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="startdate" class="form-label">Start Date:</label>
+
+              <input
+                type="date"
+                formControlName="startDate"
+                id="startDate"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="endDate" class="form-label">Finish Date:</label>
+
+              <input
+                type="date"
+                formControlName="endDate"
+                id="endDate"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="department">Department</label>
+
+              <select formControlName="departmentId" class="form-control">
+                <option value="1">ict</option>
+                <option value="2">roads</option>
+                <option value="3">Trade</option>
+                <option value="4">Health</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="subcounty" class="form-label">Sub county</label>
+
+              <select #subCountySelect
+                (change)="findAllwards()"
+                class="form-control">
+                <option *ngFor="let subcounty of subcounties" value="{{subcounty.id}}">{{subcounty.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="wardId" class="form-label">Ward</label>
+              <select formControlName="wardId" class="form-control">
+                <option *ngFor="let ward of wards" value="{{ ward.id }}">
+                  {{ ward.name }}
+                </option>
+              </select>
+            </div>
+
+            <button id="" type="submit" class="btn btn-success">Submit</button>
+            <pre>{{ activityForm.value|json }}</pre>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <h1>Digitalizing Roads</h1>
+      <div>
+        <img
+          src="assets/caterpiller.jpeg"
+          alt="Caterpillar"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

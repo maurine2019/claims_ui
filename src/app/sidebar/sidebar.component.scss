@@ -1,0 +1,21 @@
+// .sidebar {
+//     // width: 120px;
+//   }
+  
+//   .closed {
+//     width: 0;
+//   }
+/* sidebar.component.scss */
+.sidebar {
+    width: 200px; /* Initial width */
+    height: 100%;
+    background-color: #333;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s; /* Animation duration */
+  }
+  
+  .closed {
+    width: 64px; /* Adjust as needed */
+  }
+  
