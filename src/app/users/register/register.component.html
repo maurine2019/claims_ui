@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center golden">Registration Form</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" >
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Full Name</label>
+                            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter Full Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input formControlName="phone" type="tel" class="form-control" id="phone" placeholder="Phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="idNo" class="form-label">Id Number</label>
+                            <input formControlName="idNumber" type="text" class="form-control" id="idNo" placeholder="ID Number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff" class="form-label">Staff Number</label>
+                            <input formControlName="staffNo" type="text" class="form-control" id="staffNo" placeholder="Staff Number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff" class="form-label">Department</label>
+                            <select  formControlName="departmentId"  >
+                                <option *ngFor="let department of departments" value="{{department.depId}}">{{department.deptName}}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <!-- <form [formGroup]="otpForm" (submit)="sendOtp(otpForm)"> -->
+                            <label for="otp" class="form-label">Designation</label>
+                            <div class="input-group">
+                                <select  formControlName="designationId"  >
+                                    <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.name}}</option>
+                                </select>
+                                <!-- <input formControlName="otp" name="otp"  type="text" class="form-control" id="otp" placeholder="Enter OTP">
+                                <input  type="submit" class="btn btn-outline-secondary" type="button" value="Send OTP"> -->
+                            </div>
+                        <!-- </form> -->
+                        </div>
+                        <button (click)="registerUser()" *ngIf="!user" type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button (click)="updateUser()" *ngIf="user" class="btn btn-primary btn-block">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

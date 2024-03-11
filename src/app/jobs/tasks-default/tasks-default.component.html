@@ -1,0 +1,79 @@
+<div class="row m-2">
+    <div class="col-md-4">
+            <form [formGroup]="searchForm">
+        <div class="input-group ">
+            <input formControlName="search" name="search"  type="text" class="form-control"  placeholder="Search">
+            <input  type="submit" class="btn btn-outline-secondary" type="button" value="Search">
+        </div> 
+        </form>
+    </div>
+ 
+</div>  
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Activity</th>
+            <th>Distance</th>
+            <th>Fuel</th>
+            <th>SubCounty</th>
+            <th>Ward</th>
+            <th>Status</th>
+            <th>Task Nature</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let task of tasks,let i=index">
+            <td>{{i+1}}</td>
+            <td>{{task.roadName}}</td>
+            <td>{{task.activity?.name}}</td>
+            <td>{{task.distance}}</td>
+            <td>{{task.fuel}}</td>
+            <td>{{task.ward.subcounty?.name}}</td>
+            <td>{{task.ward?.name}}</td>
+            <td>{{task.taskStatus?.name}}</td>
+            <td>{{task.taskNature?.name}}</td>
+            <td>
+                <a *ngIf="task.staff?.name==null" routerLink="../assign-user-task/{{task.uuid}}">Assign User</a>
+                <a (click)="setTask(task)" class="btn btn-small btn-secondary" *ngIf="task.staff?.name!=null" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Task</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" style="max-width: 80%; max-height: 90vh;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">{{task1?.roadName}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Activity {{task1.activity?.name}}    
+            Distance {{task1.distance}}
+            Fuel {{task1.fuel}}
+            SubCounty {{task1.ward?.subcounty?.name}}
+            Ward {{task1.ward?.name}}
+            Status {{task1.taskStatus?.name}}
+            Nature {{task1.taskNature?.name}}
+            <!-- <td>{{task.roadName}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td> -->
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
