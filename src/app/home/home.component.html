@@ -1,4 +1,18 @@
-<app-toolbar></app-toolbar>
+
+<!-- app.component.html or your main layout component -->
+<div class="wrapper" >
+    <nav  id="sidebar" *ngIf="isOpen">
+      <app-sidebar></app-sidebar>
+    </nav>
+    <main id="content"  [style.margin-left]="sidebarWidth">
+      <app-toolbar class="sticky-toolbar"></app-toolbar>
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </main>
+</div>
+  
+
+<!-- <app-toolbar></app-toolbar>
 <div class="row">
     <div class="col-md-2">
 <app-sidebar></app-sidebar>
@@ -9,5 +23,5 @@
         <app-footer></app-footer>
     </div>
     
-</div>
+</div> -->
 

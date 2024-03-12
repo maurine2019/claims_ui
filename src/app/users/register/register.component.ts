@@ -10,6 +10,7 @@ import { RoadsService } from 'src/app/RoadsService';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit{
+title: string="Register User";
 
         updateUser() {
           alert("clicked");
@@ -42,6 +43,7 @@ departments: any;
 
 
   populateForm(): void {
+    this.title="Update User"
     const transformedObject = {
       name: this.user.name,
       email: this.user.email,

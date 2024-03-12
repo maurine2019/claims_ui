@@ -1,0 +1,15 @@
+/* app.component.scss or your main layout component styles */
+.wrapper {
+    display: flex;
+    height: 100%;
+    transition: margin-left 0.3s; /* Animation duration */
+  }
+
+
+  
+  #content {
+    flex-grow: 1;
+    overflow: auto;
+    // padding: 20px; /* Adjust as needed */
+  }
+  
