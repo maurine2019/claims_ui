@@ -1,3 +1,4 @@
+<div class="container">
 <table class="table table-striped">
     <thead>
         <tr>
@@ -5,6 +6,7 @@
             <th>Name</th>
             <th>Designation</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Department</th>
             <th>Status</th>
             <th>Action</th>
@@ -17,9 +19,11 @@
             <td>{{user.name}}</td>
             <td>{{user.designation?.name}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
             <td>{{user.department.deptName}}</td>
             <td>{{user.status}}</td>
-            <td><button >Edit</button></td>
+            <td><button routerLink="register/{{user.uuid}}">Edit</button></td>
         </tr>
     </tbody>
 </table>
+</div>
