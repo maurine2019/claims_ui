@@ -9,8 +9,12 @@
                     <form [formGroup]="registrationForm" >
                         <div class="row">
                         <div class="mb-3 col-md-4">
-                            <label for="username" class="form-label">Full Name</label>
-                            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter Full Name">
+                            <label for="fname" class="form-label">First Name</label>
+                            <input formControlName="fname" type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input formControlName="lname" type="text" class="form-control" id="lname" placeholder="Enter Last Name">
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="email" class="form-label">Email address</label>

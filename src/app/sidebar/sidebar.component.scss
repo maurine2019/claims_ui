@@ -1,14 +1,15 @@
-/* sidebar.component.scss */
-// .sidebar {
-//     // width: 200px; /* Initial width */
-//     // height: 100%;
-//     background-color: #333;
-//     // color: white;
-//     overflow-x: hidden;
-//     transition: width 0.3s; /* Animation duration */
-//   }
-  
-//   .closed {
-//     width: 64px; /* Adjust as needed */
-//   }
-  
+/* Smaller menu items */
+.nav-item {
+    font-size: 14px; /* Adjust as needed */
+}
+
+/* Hover animation */
+.nav-item:hover {
+    background-color: #f8f9fc; /* Change as desired */
+    transition: background-color 0.3s ease; /* Adjust the transition speed */
+}
+
+/* Additional styles for collapsed menu items */
+.nav-item.collapsed:hover {
+    background-color: transparent; /* Keep transparent on hover if collapsed */
+}

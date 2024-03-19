@@ -1,0 +1,51 @@
+<div class="container">
+    <h5>Tasks</h5>
+
+    <div class="container">
+      
+        <div class="row m-2">
+            <div class="col-md-4">
+                    <form >
+                <div class="input-group ">
+                    <input formControlName="search" name="search"  type="text" class="form-control"  placeholder="Search">
+                    <input  type="submit" class="btn btn-outline-secondary" type="button" value="Search">
+                </div> 
+                </form>
+            </div>
+         
+        </div>  
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Activity</th>
+                    <th>Distance</th>
+                    <th>Fuel</th>
+                    <th>SubCounty</th>
+                    <th>Ward</th>
+                    <th>Status</th>
+                    <th>Task Nature</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <tr *ngFor="let task of tasks,let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{task.roadName}}</td>
+                    <td>{{task.activity?.name}}</td>
+                    <td>{{task.distance}}</td>
+                    <td>{{task.fuel}}</td>
+                    <td>{{task.ward.subcounty?.name}}</td>
+                    <td>{{task.ward?.name}}</td>
+                    <td>{{task.taskStatus?.name}}</td>
+                    <td>{{task.taskNature?.name}}</td>
+                    <td>
+                        <a  routerLink="../addhistory/{{task.uuid}}">addhistory</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+</div>

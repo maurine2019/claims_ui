@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterDriverComponent } from './register-driver/register-driver.component';
 import { RegisterdepartmentComponent } from './registerdepartment/registerdepartment.component';
 import { JobsComponent } from './jobs/jobs.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ToolbarComponent } from './toolbar/toolbar.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
@@ -16,10 +16,16 @@ import { HomeComponent } from './home/home.component';
 import { HomeDefaultComponent } from './home-default/home-default.component';
 import { UsersComponent } from './users/users.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { UsersDefaultComponent } from './users-default/users-default.component';
+import { UsersDefaultComponent } from './users/users-default/users-default.component';
 import { TasksDefaultComponent } from './jobs/tasks-default/tasks-default.component';
 import { CreateTaskComponent } from './jobs/create-task/create-task.component';
 import { AssignUserTaskComponent } from './jobs/assign-user-task/assign-user-task.component';
+import { UserTasksComponent } from './jobs/user-tasks/user-tasks.component';
+import { TokeInterceptor } from './token-interceptor';
+import { RequestLoggerInterceptor } from './RequestLoggerInterceptor';
+import { ClientComponent } from './client/client.component';
+import { ClientTasksComponent } from './client/client-tasks/client-tasks.component';
+import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/client-add-task-history.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,10 @@ import { AssignUserTaskComponent } from './jobs/assign-user-task/assign-user-tas
     TasksDefaultComponent,
     CreateTaskComponent,
     AssignUserTaskComponent,
+    UserTasksComponent,
+    ClientComponent,
+    ClientTasksComponent,
+    ClientAddTaskHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +56,22 @@ import { AssignUserTaskComponent } from './jobs/assign-user-task/assign-user-tas
     HttpClientModule, 
     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokeInterceptor,
+      multi:true,
+    }, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestLoggerInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  //0721735314
+}

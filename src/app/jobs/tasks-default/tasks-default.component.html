@@ -1,6 +1,19 @@
 <div class="container">
 <div class="row m-2">
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <select>
+            <option *ngFor="let subcounty of subcounties" value="{{subcounty.id}}">{{subcounty.name}}</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+           From:<input type="date" name="" id="">
+  
+    </div>
+    <div class="col-md-3">
+          
+            To:<input type="date" name="" id="">
+    </div>
+    <div class="col-md-3">
             <form [formGroup]="searchForm">
         <div class="input-group ">
             <input formControlName="search" name="search"  type="text" class="form-control"  placeholder="Search">
@@ -22,6 +35,10 @@
             <th>Ward</th>
             <th>Status</th>
             <th>Task Nature</th>
+            <th>History</th>
+            <th>Staff</th>
+            <th>Start</th>
+            <th>End</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -37,6 +54,10 @@
             <td>{{task.ward?.name}}</td>
             <td>{{task.taskStatus?.name}}</td>
             <td>{{task.taskNature?.name}}</td>
+            <td><span>{{task.taskHistories?.length}}</span></td>
+            <td>{{task.staff?.name}}</td>
+            <td>{{ task.startDate | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ task.endDate | date: 'yyyy-MM-dd' }}</td>
             <td>
                 <a *ngIf="task.staff?.name==null" routerLink="../assign-user-task/{{task.uuid}}">Assign User</a>
                 <a (click)="setTask(task)" class="btn btn-small btn-secondary" *ngIf="task.staff?.name!=null" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Task</a>
@@ -54,21 +75,63 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Activity {{task1.activity?.name}}    
-            Distance {{task1.distance}}
-            Fuel {{task1.fuel}}
-            SubCounty {{task1.ward?.subcounty?.name}}
-            Ward {{task1.ward?.name}}
-            Status {{task1.taskStatus?.name}}
-            Nature {{task1.taskNature?.name}}
-            <!-- <td>{{task.roadName}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td> -->
+
+
+            <div class="row">
+                <div>
+                   Staff {{task1.staff?.name}}
+                </div>
+                <div class="col-md-3">
+                    Activity {{task1.activity?.name}} 
+                </div>
+                <div class="col-md-3">
+                    Distance {{task1.distance}}
+                </div>
+                <div class="col-md-3">
+                    Fuel {{task1.fuel}}
+                </div>
+                <div class="col-md-3">
+                    SubCounty {{task1.ward?.subcounty?.name}}
+                </div>
+                <div class="col-md-3">
+                    Ward {{task1.ward?.name}}
+                </div>
+                <div class="col-md-3">
+                    Status {{task1.taskStatus?.name}}
+                </div>
+                <div class="col-md-3">
+                    Nature {{task1.taskNature?.name}}
+                </div>
+            </div>
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Task Status</th>
+                            <th>Date Created</th>
+                            <th>Status</th>
+                            <th>Distance</th>
+                            <th>Fuel</th>
+                            <th>CreatedBy</th>
+                            <th>Task Status</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        <tr *ngFor="let history of task1.taskHistories,let i=index">
+                            <td>{{i+1}} </td>
+                            <td>{{history.dateCreated}} </td>
+                            <td>{{history.status}}</td>
+                            <td>{{history.distance}}</td>
+                            <td>{{history.fuel}}</td>
+                            <td>{{history.createdBy.name}}</td>
+                            <td>{{history.taskStatus.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+
             
         </div>
         <div class="modal-footer">

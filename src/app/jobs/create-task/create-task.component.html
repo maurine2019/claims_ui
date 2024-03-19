@@ -1,8 +1,8 @@
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-10 ">
       <div class="card">
-        <div class="card-body" style="padding: 25px">
+        <div class="card-body p-4" >
           <!-- Add Bootstrap HTML components here -->
 
           <h2>Task details</h2>
@@ -12,7 +12,7 @@
             class="row g-3"
             action="/action_page.php"
           >
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label for="roadname" class="form-label">Road Name:</label>
             <input
               formControlName="roadName"
@@ -22,7 +22,7 @@
               placeholder="Enter the Road Name"
             />
           </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="activity" class="form-label">Activity:</label>
               <select
                 formControlName="activityId"
@@ -38,7 +38,7 @@
               </select>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="vehiclereg" class="form-label"
                 >Machine Registration Number:</label
               >
@@ -50,7 +50,7 @@
                 <option value="1">27cgu</option>
               </select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="fuel" class="form-label">Nature of Task:</label>
                 <select formControlName="taskNatureId" class="form-control">
                   <option value="1">Inhouse</option>
@@ -58,11 +58,22 @@
                 </select>
               </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="fuel" class="form-label">Task Status:</label>
               <select formControlName="taskStatusId" class="form-control">
                 <option *ngFor="let status of taskStatus" value="{{status.id}}">{{status.name}}</option>
               </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="distance" class="form-label">Distance</label>
+
+              <input
+                type="text"
+                id="distance"
+                formControlName="distance"
+                class="form-control"
+              />
             </div>
 
 
@@ -77,7 +88,7 @@
               ></textarea>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="fuel" class="form-label">Amount of Fuel:</label>
 
               <input
@@ -88,18 +99,9 @@
               />
             </div>
 
-            <div class="col-md-6">
-              <label for="distance" class="form-label">Distance</label>
 
-              <input
-                type="text"
-                id="distance"
-                formControlName="distance"
-                class="form-control"
-              />
-            </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="startdate" class="form-label">Start Date:</label>
 
               <input
@@ -109,7 +111,7 @@
                 class="form-control"
               />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="endDate" class="form-label">Finish Date:</label>
 
               <input
@@ -120,7 +122,7 @@
               />
             </div>
 
-            <div class="form-group">
+            <div class="col-md-4">
               <label class="form-label" for="department">Department</label>
 
               <select formControlName="departmentId" class="form-control">
@@ -131,7 +133,7 @@
               </select>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="subcounty" class="form-label">Sub county</label>
 
               <select #subCountySelect
@@ -140,7 +142,7 @@
                 <option *ngFor="let subcounty of subcounties" value="{{subcounty.id}}">{{subcounty.name}}</option>
               </select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="wardId" class="form-label">Ward</label>
               <select formControlName="wardId" class="form-control">
                 <option *ngFor="let ward of wards" value="{{ ward.id }}">
@@ -150,7 +152,6 @@
             </div>
 
             <button id="" type="submit" class="btn btn-success">Submit</button>
-            <pre>{{ activityForm.value|json }}</pre>
           </form>
         </div>
       </div>

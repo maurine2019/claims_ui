@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar-service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AuthService } from '../AuthService';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,11 +24,14 @@ export class HomeComponent  {
   isSidebarOpen: boolean = true;
   sidebarWidth: string = '200px'; // Initial width
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(private sidebarService: SidebarService,
+    private authService:AuthService,
+    private router : Router) {}
 
   ngOnInit(): void {
-    // this.sidebarService.isSidebarOpen$.subscribe((isOpen) => {
-    //   this.isSidebarOpen = isOpen;
+    // if(!this.authService.isAuthenticated()){
+    //     this.router.navigate(["login"]);
+    // }
     }
     
 isOpen=this.sidebarService.isOpen;

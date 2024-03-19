@@ -1,0 +1,48 @@
+<h3 class="pt-2">{{title}}</h3>
+<h4 class="p-2">History For <span style="color: orangered;">{{task.roadName}}</span> Activity: <span style="color: orangered;">{{task.activity.name}}</span></h4>
+<div class="card m-3 p-3">
+    <div class="card-title"><h4>Add History</h4></div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text">
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Task Status</th>
+            <th>Date Created</th>
+            <th>Status</th>
+            <th>Distance</th>
+            <th>Fuel</th>
+            <th>CreatedBy</th>
+            <th>Task Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let history of taskHistories,let i=index">
+            <td>{{i+1}} </td>
+            <td>{{history.dateCreated}} </td>
+            <td>{{history.status}}</td>
+            <td>{{history.distance}}</td>
+            <td>{{history.fuel}}</td>
+            <td>{{history.createdBy.name}}</td>
+            <td>{{history.taskStatus.name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- private Long id;
+    private UUID uuid;
+    private Date dateCreated;
+    private boolean status;
+    private Double distance;
+    private Double fuel;
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private Staff createdBy;
+    @ManyToOne
+    @JoinColumn(name = "task_status_id")
+    private TaskStatus taskStatus; -->

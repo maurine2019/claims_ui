@@ -16,8 +16,9 @@ setTask(task: any) {
   task_uuid ='dfghjklsdfdghgfesdxlckjhghjkl'
 constructor(private roadsService:RoadsService){}
   ngOnInit(): void {
-
+    this.findSubcounties();
     this.findAllTasks();
+
   }
 
   searchForm=new FormGroup({
@@ -34,5 +35,13 @@ constructor(private roadsService:RoadsService){}
       (error: HttpErrorResponse) => {
         alert(error.message);
       };
+  }
+subcounties:any;
+  findSubcounties(){
+    this.roadsService.findSubcounties().subscribe((res:any)=>{
+this.subcounties=res;
+    }),(error:HttpErrorResponse)=>{
+      alert(error.message);
+    }
   }
 }

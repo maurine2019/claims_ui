@@ -31,9 +31,7 @@ departments: any;
       if(uuid!=null){
         this.findUserByUUID(uuid);
 
-      }
-      
-    });
+      } });
 
     this.findDesignations();
     this.findDepartments();
@@ -45,7 +43,8 @@ departments: any;
   populateForm(): void {
     this.title="Update User"
     const transformedObject = {
-      name: this.user.name,
+      fname: this.user.fname,
+      lname: this.user.lname,
       email: this.user.email,
       phone: this.user.phone, 
       idNumber: this.user.idNumber,
@@ -77,7 +76,8 @@ departments: any;
 
 
   registrationForm = new FormGroup({
-    name: new FormControl(),
+    fname: new FormControl(),
+    lname: new FormControl(),
     email: new FormControl(),
     phone: new FormControl(),
     idNumber:new FormControl(),

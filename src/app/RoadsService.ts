@@ -1,11 +1,30 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from './AuthService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoadsService {
+  
+  findSubcounties() {
+    return this.http.get<any>("http://localhost:8081/subcounty");
+  }
+
+  findAllTaskHistoryByTask(id: any) {
+    return this.http.get<any>("http://localhost:8081/task/history/"+id);
+  }
+  
+  findTaskByUuid(uuid: any) {
+    return this.http.get<any>("http://localhost:8081/task/uuid/"+uuid);
+  }
+  constructor(private http:HttpClient,private authService:AuthService){}
+
+  findTaskByUser(userId: any) {
+    return this.http.get<any>("http://localhost:8081/task/staff/"+userId);
+  }
+
   updateUser(uuid: any, value: any) {
     return this.http.put<any>("http://localhost:8081/staff/update/"+uuid,value);
   }
@@ -36,10 +55,11 @@ export class RoadsService {
   findAllTasks():Observable<any> {
     return this.http.get<any>("http://localhost:8081/task");
   }
+
+
   createTask(payload:any) {
     return this.http.post<any>("http://localhost:8081/activities/add",payload);
   }
-  constructor(private http:HttpClient){}
   findAllActivities():Observable<any> {
     return this.http.get<any>("http://localhost:8081/activities/all");
   }
