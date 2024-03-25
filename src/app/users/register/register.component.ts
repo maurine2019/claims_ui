@@ -10,11 +10,25 @@ import { RoadsService } from 'src/app/RoadsService';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit{
+
+  password_matches:boolean =false;
+
+      checkIfPasswordMatches() {
+        var pass=  this.registrationForm.get("password")?.value;
+        var confirm_pass=  this.registrationForm.get("confirm_password")?.value;
+        if(pass==confirm_pass){
+          this.password_matches=false;
+        }else{
+          this.password_matches=true;
+        }
+
+      }
+
+
 title: string="Register User";
+vehicles: any;
 
         updateUser() {
-          alert("clicked");
-          
           this.service.updateUser(this.user.uuid,this.registrationForm.value).subscribe((res:any)=>{
             alert(res.message);
           }),(error:HttpErrorResponse)=>{
@@ -30,21 +44,18 @@ departments: any;
       const uuid = params['user_uuid'];
       if(uuid!=null){
         this.findUserByUUID(uuid);
-
       } });
-
     this.findDesignations();
     this.findDepartments();
-
-
+    this.findVehicles();
   }
 
-
+  // 
   populateForm(): void {
     this.title="Update User"
     const transformedObject = {
-      fname: this.user.fname,
-      lname: this.user.lname,
+      fname: this.user.firstname,
+      lname: this.user.lastname,
       email: this.user.email,
       phone: this.user.phone, 
       idNumber: this.user.idNumber,
@@ -54,6 +65,14 @@ departments: any;
     };
 
     this.registrationForm.patchValue(transformedObject);
+  }
+
+  findVehicles(){
+    this.service.findVehicles().subscribe((res:any)=>{
+      this.vehicles =res;
+    }),(error:HttpErrorResponse)=>{
+      alert(error.message);
+    }
   }
       findUserByUUID(uuid:any){
         this.service.findUserByUUID(uuid).subscribe((res:any)=>{
@@ -82,8 +101,10 @@ departments: any;
     phone: new FormControl(),
     idNumber:new FormControl(),
     staffNo:new FormControl(),
+    password:new FormControl(),
     designationId: new FormControl(),
-    departmentId:new FormControl()
+    departmentId:new FormControl(),
+    vehicleId:new FormControl()
   });
 
   designations: any;

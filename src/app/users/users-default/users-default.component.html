@@ -3,15 +3,16 @@
     <thead>
         <tr>
             <th></th>
+            
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>StaffNo</th>
-            <th>IdNumber</th>
-            <th>UUID</th>
             <th>Role</th>
             <th>Department</th>
             <th>Designation</th>
+            <th>Machine</th>
+            <th>Tasks</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -22,11 +23,11 @@
             <td>{{user.email}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.staffNo}}</td>
-            <td>{{user.idNumber}}</td>
-            <td>{{user.uuid}}</td>
             <td>{{user.role}}</td>
             <td>{{user.department}}</td>
             <td>{{user.designation}}</td>
+            <td>{{user.vehicle}}</td>
+            <td>{{user.tasks}}</td>
             <td>
                 <button routerLink="register/{{user.uuid}}">Edit</button>
                 <button routerLink="../tasks/user-tasks/{{user.uuid}}">Tasks</button>

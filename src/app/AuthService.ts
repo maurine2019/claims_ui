@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  getUserId(): any {
+    return sessionStorage.getItem('userId');
+  }
   private jwtHelper: JwtHelperService = new JwtHelperService();
   private readonly tokenKey = 'your_token_key';
 

@@ -18,6 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ClientComponent } from './client/client.component';
 import { ClientTasksComponent } from './client/client-tasks/client-tasks.component';
 import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/client-add-task-history.component';
+import { ViewTaskComponent } from './jobs/view-task/view-task.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"home",pathMatch:'full'},
@@ -32,6 +33,7 @@ const routes: Routes = [
         {path:'assign-user-task/:uuid',component:AssignUserTaskComponent},
         {path:'user-tasks',component:UserTasksComponent},
         {path:'user-tasks/:user_uuid',component:UserTasksComponent},
+        {path:'view-task/:uuid',component:ViewTaskComponent},
       ]
   },
     {path:'users',component:UsersComponent,

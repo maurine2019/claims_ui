@@ -15,20 +15,25 @@ export class CreateTaskComponent {
   
   activityForm = this.formBuilder.group({
     activityId: ['', Validators.required],
-    vehicleId: ['', Validators.required],
     roadName: ['', Validators.required],
     description: ['', Validators.required],
     fuel: ['', Validators.required],
     distance: ['', Validators.required],
     startDate: ['', Validators.required],
     endDate: ['', Validators.required],
-    departmentId: ['', Validators.required],
     wardId: ['', Validators.required],
-    taskStatusId: ['', Validators.required],
     taskNatureId:['',Validators.required]
 
   });
 subcounties: any;
+taskNatures: any;
+findTaskNatures(){
+  this.roadsService.findTaskNature().subscribe((res:any)=>{
+    this.taskNatures=res;
+  }),(error:HttpErrorResponse)=>{
+
+  }
+}
 
   constructor(
     private service: MyserviceService,
@@ -40,6 +45,7 @@ subcounties: any;
     this.findSubCounties();
     this.findTaskStatus();
     this.findAllActivities();
+    this.findTaskNatures();
   }
   activities: any[] = [];
 
@@ -81,8 +87,7 @@ subcounties: any;
   public onallocatejob() {
     //  if(this.activityForm.valid)
     this.service.createTask(this.activityForm.value).subscribe((res: any) => {
-      alert(res);
-      console.log(res);
+      alert(res.message);
     }),
       (error: HttpErrorResponse) => {
         alert(error.message);

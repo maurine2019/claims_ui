@@ -38,19 +38,36 @@
                                 <option *ngFor="let department of departments" value="{{department.depId}}">{{department.deptName}}</option>
                             </select>
                         </div>
+                        
+                        <div class="mb-3 col-md-4">
+                            <label for="staff" class="form-label">Password</label>
+                            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">  
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="staff" class="form-label">Confirm Password</label>
+                            <input (blur)="checkIfPasswordMatches()"  type="password" class="form-control" id="confirm_password" placeholder="Confirm Password">  
+                        <span *ngIf="password_matches" class="p-1 m-1" formControlName="confirm_password" style="background-color: orange;color: white;">Password Does Not Match</span>
+                        </div>
+
 
                         <div class="mb-3 col-md-4">
-                            <!-- <form [formGroup]="otpForm" (submit)="sendOtp(otpForm)"> -->
                             <label for="otp" class="form-label">Designation</label>
                             <div class="input-group">
                                 <select  formControlName="designationId"  >
                                     <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.name}}</option>
                                 </select>
-                                <!-- <input formControlName="otp" name="otp"  type="text" class="form-control" id="otp" placeholder="Enter OTP">
-                                <input  type="submit" class="btn btn-outline-secondary" type="button" value="Send OTP"> -->
                             </div>
-                        <!-- </form> -->
                         </div>
+
+                        <div class="mb-3 col-md-4">
+                            <label for="otp" class="form-label">Vehicle</label>
+                            <div class="input-group">
+                                <select  formControlName="vehicleId"  >
+                                    <option *ngFor="let vehicle of vehicles" value="{{vehicle.id}}">{{vehicle.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <button (click)="registerUser()" *ngIf="!user" type="submit" class="btn btn-primary btn-block">Register</button>
                         <button (click)="updateUser()" *ngIf="user" class="btn btn-primary btn-block">Update</button>
                     </div>

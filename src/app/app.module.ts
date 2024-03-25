@@ -26,6 +26,10 @@ import { RequestLoggerInterceptor } from './RequestLoggerInterceptor';
 import { ClientComponent } from './client/client.component';
 import { ClientTasksComponent } from './client/client-tasks/client-tasks.component';
 import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/client-add-task-history.component';
+import { ViewTaskComponent } from './jobs/view-task/view-task.component';
+import { SortTaskHistoriesByDateCreatedPipe } from './jobs/view-task/SortTaskHistoriesByDateCreatedPipe ';
+import { ClockComponent } from './clock/clock.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,10 @@ import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/
     UserTasksComponent,
     ClientComponent,
     ClientTasksComponent,
-    ClientAddTaskHistoryComponent
+    ClientAddTaskHistoryComponent,
+    ViewTaskComponent,
+    SortTaskHistoriesByDateCreatedPipe,
+    ClockComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,7 @@ import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     {
@@ -64,11 +72,11 @@ import { ClientAddTaskHistoryComponent } from './client/client-add-task-history/
       useClass:TokeInterceptor,
       multi:true,
     }, 
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestLoggerInterceptor,
-      multi: true,
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: RequestLoggerInterceptor,
+    //   multi: true,
+    // }
   ],
   bootstrap: [AppComponent]
 })

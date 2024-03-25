@@ -1,17 +1,29 @@
 <div class="container">
-<div class="row m-2">
-    <div class="col-md-3">
-        <select>
+<div class="row m-2 p-2" style="background-color: darkgreen; color: white;">
+    <div class="col-md-2">
+        <select class="form-control">
             <option *ngFor="let subcounty of subcounties" value="{{subcounty.id}}">{{subcounty.name}}</option>
         </select>
     </div>
-    <div class="col-md-3">
-           From:<input type="date" name="" id="">
-  
+
+    <div class="col-md-2">
+        <div class="input-group ">
+            <select class="form-control">
+                <option *ngFor="let nature of taskNatures" value="{{nature.id}}">{{nature.name}}</option>
+            </select>
+        </div> 
     </div>
-    <div class="col-md-3">
-          
-            To:<input type="date" name="" id="">
+
+    <div class="col-md-2">
+        <div class="input">
+            <input class="form-control" type="date" name="" id="">
+        </div> 
+    </div>
+    <div class="col-md-2">
+        <div class="input ">
+            <input class="form-control" type="date" name="" id="">
+        </div> 
+           
     </div>
     <div class="col-md-3">
             <form [formGroup]="searchForm">
@@ -26,19 +38,21 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th></th>
             <th>Title</th>
             <th>Activity</th>
-            <th>Distance</th>
-            <th>Fuel</th>
-            <th>SubCounty</th>
+            <th>Estimated Fuel</th>
+            <th>Total KM</th>
+            <th>Covered KM</th>
+            <th>Fuel Used</th>
             <th>Ward</th>
             <th>Status</th>
+            <th>TaskStatus</th>
             <th>Task Nature</th>
-            <th>History</th>
-            <th>Staff</th>
+            <th>Operators</th>
             <th>Start</th>
             <th>End</th>
+            <th>Histories</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -47,20 +61,22 @@
         <tr *ngFor="let task of tasks,let i=index">
             <td>{{i+1}}</td>
             <td>{{task.roadName}}</td>
-            <td>{{task.activity?.name}}</td>
-            <td>{{task.distance}}</td>
-            <td>{{task.fuel}}</td>
-            <td>{{task.ward.subcounty?.name}}</td>
-            <td>{{task.ward?.name}}</td>
-            <td>{{task.taskStatus?.name}}</td>
-            <td>{{task.taskNature?.name}}</td>
-            <td><span>{{task.taskHistories?.length}}</span></td>
-            <td>{{task.staff?.name}}</td>
+            <td>{{task.activity}}</td>
+            <td>{{task.fuel*task.distance}}L</td>
+            <td>{{task.distance}}KM</td>
+            <td>{{task.distanceCovered}}KM</td>
+            <td>{{task.fuelUsed}}L</td>
+            <td>{{task.wardName}}</td>
+            <td>{{task.jobStatus}}</td>
+            <td>{{task.taskStatus}}</td>
+            <td>{{task.taskNature}}</td>
+            <td>{{task.userTaskCount}}</td>
             <td>{{ task.startDate | date: 'yyyy-MM-dd' }}</td>
             <td>{{ task.endDate | date: 'yyyy-MM-dd' }}</td>
+            <td>{{task.taskHistoryCount}}</td>
             <td>
-                <a *ngIf="task.staff?.name==null" routerLink="../assign-user-task/{{task.uuid}}">Assign User</a>
-                <a (click)="setTask(task)" class="btn btn-small btn-secondary" *ngIf="task.staff?.name!=null" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Task</a>
+                <a *ngIf="task.userTaskCount==0" routerLink="../assign-user-task/{{task.uuid}}">Assign User</a>
+                <button routerLink="../view-task/{{task.uuid}}">view task</button>
             </td>
         </tr>
     </tbody>

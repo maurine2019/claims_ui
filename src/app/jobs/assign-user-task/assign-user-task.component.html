@@ -22,6 +22,7 @@
             <th>UUID</th>
             <th>Role</th>
             <th>Department</th>
+            <th>Machine</th>
             <th>Designation</th>
             <th>Action</th>
         </tr>
@@ -38,6 +39,7 @@
             <td>{{user.uuid}}</td>
             <td>{{user.role}}</td>
             <td>{{user.department}}</td>
+            <td>{{user.vehicle}}</td>
             <td>{{user.designation}}</td>
             <td>
                 <a class="link" (click)="assignTask(user.id)">Assign</a>

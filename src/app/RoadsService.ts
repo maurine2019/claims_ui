@@ -7,6 +7,33 @@ import { AuthService } from './AuthService';
   providedIn: 'root'
 })
 export class RoadsService {
+  findVehicles() {
+    return this.http.get<any>("http://localhost:8081/vehicle");
+  }
+  deleteHistory(historyId: any) {
+    return this.http.delete<any>("http://localhost:8081/task/history/"+historyId);
+  }
+  fetchTaskDistance(taskId:any) {
+    return this.http.get<any>("http://localhost:8081/task/distance/"+taskId);
+  }
+  findTaskNature() {
+    return this.http.get<any>("http://localhost:8081/task/nature");
+  }
+  fetchAssignedOperators(taskId: any) {
+    return this.http.get<any>("http://localhost:8081/task/operators/"+taskId);
+  }
+  saveHistory(value: Partial<{ distance: any; fuel: any; taskStatusId: any; taskId: any; createdById: any; description: any; historyStatusId: any; historyTypeId: any; }>) {
+    return this.http.post<any>("http://localhost:8081/task/history",value);
+  }
+  fetchTaskStatus() {
+    return this.http.get<any>("http://localhost:8081/task/status");
+  }
+  fetchTaskHistoryStatus() {
+    return this.http.get<any>("http://localhost:8081/task/history/status");
+  }
+  fetchTaskHistoryType() {
+    return this.http.get<any>("http://localhost:8081/task/history/type");
+  }
   
   findSubcounties() {
     return this.http.get<any>("http://localhost:8081/subcounty");
@@ -34,6 +61,7 @@ export class RoadsService {
   }
 
   assignTask(jsonObject:any) {
+    console.log(jsonObject);
     return this.http.post<any>("http://localhost:8081/task/assign",jsonObject);
   }
   findDepartments() {

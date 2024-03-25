@@ -39,34 +39,14 @@
             </div>
 
             <div class="col-md-4">
-              <label for="vehiclereg" class="form-label"
-                >Machine Registration Number:</label
-              >
-              <select
-                formControlName="vehicleId"
-                id="vehicleID"
-                class="form-control"
-              >
-                <option value="1">27cgu</option>
-              </select>
-            </div>
-            <div class="col-md-4">
                 <label for="fuel" class="form-label">Nature of Task:</label>
                 <select formControlName="taskNatureId" class="form-control">
-                  <option value="1">Inhouse</option>
-                  <option value="2">Hire</option>
+                    <option *ngFor="let nature of taskNatures" value="{{nature.id}}">{{nature.name}}</option>
                 </select>
               </div>
 
             <div class="col-md-4">
-              <label for="fuel" class="form-label">Task Status:</label>
-              <select formControlName="taskStatusId" class="form-control">
-                <option *ngFor="let status of taskStatus" value="{{status.id}}">{{status.name}}</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label for="distance" class="form-label">Distance</label>
+              <label for="distance" class="form-label">Total Distance</label>
 
               <input
                 type="text"
@@ -77,19 +57,10 @@
             </div>
 
 
-            <div class="form-group">
-              <label for="fuel" class="form-label">Description:</label>
 
-              <textarea
-                formControlName="description"
-                class="form-control"
-                id="description"
-                rows="3"
-              ></textarea>
-            </div>
 
             <div class="col-md-4">
-              <label for="fuel" class="form-label">Amount of Fuel:</label>
+              <label for="fuel" class="form-label">Fuel Usage (Liters/KM)</label>
 
               <input
                 type="text"
@@ -113,24 +84,12 @@
             </div>
             <div class="col-md-4">
               <label for="endDate" class="form-label">Finish Date:</label>
-
               <input
                 type="date"
                 formControlName="endDate"
                 id="endDate"
                 class="form-control"
               />
-            </div>
-
-            <div class="col-md-4">
-              <label class="form-label" for="department">Department</label>
-
-              <select formControlName="departmentId" class="form-control">
-                <option value="1">ict</option>
-                <option value="2">roads</option>
-                <option value="3">Trade</option>
-                <option value="4">Health</option>
-              </select>
             </div>
 
             <div class="col-md-4">
@@ -150,7 +109,16 @@
                 </option>
               </select>
             </div>
+            <div class="form-group">
+              <label for="fuel" class="form-label">Description:</label>
 
+              <textarea
+                formControlName="description"
+                class="form-control"
+                id="description"
+                rows="3"
+              ></textarea>
+            </div>
             <button id="" type="submit" class="btn btn-success">Submit</button>
           </form>
         </div>

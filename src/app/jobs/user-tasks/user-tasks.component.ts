@@ -22,23 +22,25 @@ constructor(private service:RoadsService,private route:ActivatedRoute){}
 
     this.route.params.subscribe(params => {
       const uuid = params['user_uuid'];
-      if(uuid!=null){
+      // if(uuid!=null){
         this.service.findUserByUUID(uuid).subscribe((res:any)=>{
               this.user=res;
-              this.userId=this.user.staffId;
+              this.userId=this.user.id;
+              console.log(this.user);
               this.findTasksByUser();
+
         }),(error:HttpErrorResponse)=>{
           alert(error.message);
-        };
+        // };
 
 
       } });
   }
   tasks:any;
     findTasksByUser(){
-      
         this.service.findTaskByUser(this.userId).subscribe((res:any)=>{
           this.tasks=res;
+          console.log(this.tasks);
         }),(error:HttpErrorResponse)=>{}
     }
 

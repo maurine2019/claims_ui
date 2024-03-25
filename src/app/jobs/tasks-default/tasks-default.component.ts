@@ -18,9 +18,17 @@ constructor(private roadsService:RoadsService){}
   ngOnInit(): void {
     this.findSubcounties();
     this.findAllTasks();
+    this.findTaskNature();
 
   }
+  taskNatures:any;
+findTaskNature(){
+this.roadsService.findTaskNature().subscribe((res:any)=>{
+this.taskNatures=res;
+}),(error:HttpErrorResponse)=>{
 
+}
+}
   searchForm=new FormGroup({
     search: new FormControl()
       });
