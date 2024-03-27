@@ -49,9 +49,29 @@
                         <span *ngIf="password_matches" class="p-1 m-1" formControlName="confirm_password" style="background-color: orange;color: white;">Password Does Not Match</span>
                         </div>
 
+                        <div class="col-md-4">
+                            <label for="subcounty" class="form-label">Sub county</label>
+              
+                            <select #subCountySelect
+                              (change)="findAllwards()"
+                              class="form-control">
+                              <option *ngFor="let subcounty of subcounties" value="{{subcounty.id}}">{{subcounty.name}}</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-4">
+                            <label for="wardId" class="form-label">Ward</label>
+                            <select formControlName="wardId" class="form-control">
+                              <option *ngFor="let ward of wards" value="{{ ward.id }}">
+                                {{ ward.name }}
+                              </option>
+                            </select>
+                          </div>
+
+
 
                         <div class="mb-3 col-md-4">
-                            <label for="otp" class="form-label">Designation</label>
+                            <label for="otp" class="form-label">Role</label>
                             <div class="input-group">
                                 <select  formControlName="designationId"  >
                                     <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.name}}</option>

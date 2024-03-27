@@ -21,8 +21,11 @@ export class ToolbarComponent implements OnInit{
 
 
   fname="Joe";
+  profile:any;
   ngOnInit(): void {
-    this.fname=this.getFnameFromToken(this.authService.getToken())
+this.profile=this.authService.getUserProfile();
+    this.fname=this.profile.firstname;
+    
   }
  
         logout() {

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RoadsService } from 'src/app/RoadsService';
+import { MyserviceService } from 'src/app/jobs/myservice.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { RoadsService } from 'src/app/RoadsService';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit{
-
+  @ViewChild('subCountySelect') subCountySelect: any;
   password_matches:boolean =false;
 
       checkIfPasswordMatches() {
@@ -37,7 +38,7 @@ vehicles: any;
         }
 departments: any;
   user: any='';
-  constructor(private service: RoadsService,private route:ActivatedRoute) {}
+  constructor(private myService:MyserviceService, private service: RoadsService,private route:ActivatedRoute) {}
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
@@ -48,6 +49,26 @@ departments: any;
     this.findDesignations();
     this.findDepartments();
     this.findVehicles();
+    this.findSubCounties();
+  }
+
+
+subcounties:any;
+  findSubCounties() {
+    this.myService.findSubCounties().subscribe((res: any[]) => {
+      this.subcounties = res;
+    }),
+      (error: HttpErrorResponse) => {};
+  }
+
+  wards: any[] = [];
+  findAllwards() {
+    const subcounty = this.subCountySelect.nativeElement.value;
+    this.service.findWardBySubcounty(subcounty).subscribe((res: any[]) => {
+      this.wards = res;
+      console.log(this.wards);
+    }),
+      (error: HttpErrorResponse) => {};
   }
 
   // 
@@ -104,7 +125,8 @@ departments: any;
     password:new FormControl(),
     designationId: new FormControl(),
     departmentId:new FormControl(),
-    vehicleId:new FormControl()
+    vehicleId:new FormControl(),
+    wardId:new FormControl()
   });
 
   designations: any;

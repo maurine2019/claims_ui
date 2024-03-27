@@ -29,12 +29,12 @@ const routes: Routes = [
       children:[
         {path:'',redirectTo:'tasks-default',pathMatch:'full'},
         {path:'tasks-default',component:TasksDefaultComponent},
-        {path:'create-task',component:CreateTaskComponent},
+        {path:'create-task',component:CreateTaskComponent,canActivate: [AuthGuard], data: { roles: ["ROLE_MANAGER"] }},
         {path:'assign-user-task/:uuid',component:AssignUserTaskComponent},
         {path:'user-tasks',component:UserTasksComponent},
         {path:'user-tasks/:user_uuid',component:UserTasksComponent},
         {path:'view-task/:uuid',component:ViewTaskComponent},
-      ]
+      ],canActivate: [AuthGuard], data: { roles: ["ROLE_MANAGER"] }
   },
     {path:'users',component:UsersComponent,
         children:[
@@ -42,7 +42,7 @@ const routes: Routes = [
           {path:'register',component:RegisterComponent},
           {path:'register/:user_uuid',component:RegisterComponent},
          
-        ]
+        ],canActivate: [AuthGuard], data: { roles: ["ROLE_MANAGER"] }
   },
   {path:'client',component:ClientComponent,
   children:[
@@ -52,8 +52,7 @@ const routes: Routes = [
 
 },
   ],
-  canActivate: [AuthGuard],
-  data:{roles:["ROLE_ADMIN"]}},
+ },
   
   {path:'login',component:LoginComponent},
 

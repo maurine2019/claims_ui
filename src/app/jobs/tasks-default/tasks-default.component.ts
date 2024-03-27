@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RoadsService } from 'src/app/RoadsService';
 
@@ -8,19 +8,46 @@ import { RoadsService } from 'src/app/RoadsService';
   templateUrl: './tasks-default.component.html',
   styleUrls: ['./tasks-default.component.scss']
 })
-export class TasksDefaultComponent implements OnInit {
+export class TasksDefaultComponent implements OnInit,OnDestroy {
   task1:any=[];
+  profile:any;
+
+
+
+
 setTask(task: any) {
   this.task1=task;
 }
   task_uuid ='dfghjklsdfdghgfesdxlckjhghjkl'
 constructor(private roadsService:RoadsService){}
+  ngOnDestroy(): void {
+    
+  }
   ngOnInit(): void {
-    this.findSubcounties();
+
+  
+const u=sessionStorage.getItem("profile");
+if(u){
+  this.profile=JSON.parse(u);
+}
+   
+this.findTaskNature();
+this.findSubcounties();
+
+   
+   if(this.profile.role=="ADMIN"){
     this.findAllTasks();
-    this.findTaskNature();
+  }else{
+    this.findUserTasks(this.profile.id);
+  }
 
   }
+ findUserTasks(userId:any){
+this.roadsService.findTaskByUser(userId).subscribe((res:any)=>{
+  this.tasks=res;
+})
+ }
+  
   taskNatures:any;
 findTaskNature(){
 this.roadsService.findTaskNature().subscribe((res:any)=>{
@@ -52,4 +79,6 @@ this.subcounties=res;
       alert(error.message);
     }
   }
+
+
 }

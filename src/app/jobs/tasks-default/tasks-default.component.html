@@ -35,7 +35,9 @@
     </div>
  
 </div>  
-<table class="table table-striped">
+
+
+<table  class="table table-striped table-small" >
     <thead>
         <tr>
             <th></th>
@@ -50,8 +52,8 @@
             <th>TaskStatus</th>
             <th>Task Nature</th>
             <th>Operators</th>
-            <th>Start</th>
-            <th>End</th>
+            <!-- <th>Start</th> -->
+            <!-- <th>End</th> -->
             <th>Histories</th>
             <th>Action</th>
         </tr>
@@ -60,9 +62,9 @@
     <tbody>
         <tr *ngFor="let task of tasks,let i=index">
             <td>{{i+1}}</td>
-            <td>{{task.roadName}}</td>
+            <td><a routerLink="../view-task/{{task.uuid}}">{{task.roadName }}</a></td>
             <td>{{task.activity}}</td>
-            <td>{{task.fuel*task.distance}}L</td>
+            <td>{{task.fuel*task.distance}}</td>
             <td>{{task.distance}}KM</td>
             <td>{{task.distanceCovered}}KM</td>
             <td>{{task.fuelUsed}}L</td>
@@ -71,16 +73,18 @@
             <td>{{task.taskStatus}}</td>
             <td>{{task.taskNature}}</td>
             <td>{{task.userTaskCount}}</td>
-            <td>{{ task.startDate | date: 'yyyy-MM-dd' }}</td>
-            <td>{{ task.endDate | date: 'yyyy-MM-dd' }}</td>
+            <!-- <td>{{ task.startDate | date: 'yyyy-MM-dd' }}</td> -->
+            <!-- <td>{{ task.endDate | date: 'yyyy-MM-dd' }}</td> -->
             <td>{{task.taskHistoryCount}}</td>
             <td>
                 <a *ngIf="task.userTaskCount==0" routerLink="../assign-user-task/{{task.uuid}}">Assign User</a>
-                <button routerLink="../view-task/{{task.uuid}}">view task</button>
+                <a routerLink="../view-task/{{task.uuid}}">edit</a>
             </td>
         </tr>
     </tbody>
 </table>
+
+
 
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
